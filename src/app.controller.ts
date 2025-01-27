@@ -37,25 +37,16 @@ export class AppController {
 
   @Get('convert')
   convert(@Query('celsius') celsius: string){
-    return {
-      celsius: parseFloat(celsius), 
-      fahrenheit: (parseFloat(celsius) * 9.0) / 5 + 32,
-    };
+    return this.appService.convert(parseFloat(celsius));
   }
 
   @Post('convert')
   convertByPost(@Body('celsius') celsius: number){
-    return {
-      celsius: celsius, 
-      fahrenheit: (celsius * 9.0) / 5 + 32,
-    };
+    return this.appService.convert(celsius);
   }
 
   @Get('convert/:celsius')
   convertParam(@Param('celsius') celsius: string){
-    return {
-      celsius: parseFloat(celsius), 
-      fahrenheit: (parseFloat(celsius) * 9.0) / 5 + 32,
-    };
+    return this.appService.convert(parseFloat(celsius));
   }
 }
