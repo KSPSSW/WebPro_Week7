@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+  Query,
+  Req,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -21,32 +32,21 @@ export class AppController {
   }
 
   @Get('test-query')
-  testQuery(@Req() req, @Query('celsius') celsius: number, @Query('type') type: string, ) {
-    return {celsius: celsius,type: type,};
+  testQuery(
+    @Req() req,
+    @Query('celsius') celsius: number,
+    @Query('type') type: string,
+  ) {
+    return { celsius: celsius, type: type };
   }
 
   @Get('test-params/:celsius')
   testParam(@Req() req, @Param('celsius') celsius: number) {
-    return {celsius,};
-  }
-
-  @Post('test-body')
-  testBody(@Req() req, @Body() body, @Body('celsius') celsius : number) {
     return { celsius };
   }
 
-  @Get('convert')
-  convert(@Query('celsius') celsius: string){
-    return this.appService.convert(parseFloat(celsius));
-  }
-
-  @Post('convert')
-  convertByPost(@Body('celsius') celsius: number){
-    return this.appService.convert(celsius);
-  }
-
-  @Get('convert/:celsius')
-  convertParam(@Param('celsius') celsius: string){
-    return this.appService.convert(parseFloat(celsius));
+  @Post('test-body')
+  testBody(@Req() req, @Body() body, @Body('celsius') celsius: number) {
+    return { celsius };
   }
 }
