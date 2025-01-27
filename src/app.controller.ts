@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller('hello')
@@ -18,5 +18,20 @@ export class AppController {
   @Delete('world')
   getWorld(): string {
     return '<html><body><h1>Buu World</h1><body><html>';
+  }
+
+  @Get('test-query')
+  testQuery(@Req() req, @Query('celsius') celsius: number, @Query('type') type: string, ) {
+    return {celsius: celsius,type: type,};
+  }
+
+  @Get('test-params/:celsius')
+  testParam(@Req() req, @Param('celsius') celsius: number) {
+    return {celsius,};
+  }
+
+  @Post('test-body')
+  testBody(@Req() req, @Body() body, @Body('celsius') celsius : number) {
+    return { celsius };
   }
 }
