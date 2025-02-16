@@ -4,4 +4,5 @@ export class User {
   password: string;
   roles: ('admin' | 'user')[];
   gender: 'male' | 'female';
+  age: number;
 }
